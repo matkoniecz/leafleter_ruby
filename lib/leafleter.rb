@@ -1,5 +1,4 @@
 class Leafleter
-
     #consider importing more from http://leaflet-extras.github.io/leaflet-providers/preview/
     #or using this extension
     def self.get_positron_tile_Layer()
@@ -9,7 +8,6 @@ class Leafleter
             maxZoom: 19
         })"
     end
-
 
     def self.get_standard_OSM_tile_Layer()
         return "L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -75,7 +73,6 @@ class Leafleter
 </html>
 """
     end
-
 
     def self.get_location(lat, lon)
         return "[" + lat.to_s + ", " + lon.to_s + "]"
