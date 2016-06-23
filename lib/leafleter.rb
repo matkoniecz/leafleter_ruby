@@ -1,7 +1,7 @@
 class Leafleter
-  #consider importing more from http://leaflet-extras.github.io/leaflet-providers/preview/
-  #or using this extension
-  def self.get_positron_tile_Layer()
+  # consider importing more from http://leaflet-extras.github.io/leaflet-providers/preview/
+  # or using this extension
+  def self.get_positron_tile_Layer
     return "L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href=\"http://www.openstreetmap.org/copyright\">OpenStreetMap</a> &copy; <a href=\"http://cartodb.com/attributions\">CartoDB</a>',
         subdomains: 'abcd',
@@ -9,14 +9,14 @@ class Leafleter
     })"
   end
 
-  def self.get_standard_OSM_tile_Layer()
+  def self.get_standard_OSM_tile_Layer
     return "L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '&copy; <a href=\"http://www.openstreetmap.org/copyright\">OpenStreetMap</a>'
 })"
   end
 
-  def self.get_before(title, lat_centered, lon_centered, zlevel_centered, tile_layer=get_standard_OSM_tile_Layer(), width_percent=100, sidebar_content="", css=nil)
+  def self.get_before(title, lat_centered, lon_centered, zlevel_centered, tile_layer = get_standard_OSM_tile_Layer, width_percent = 100, sidebar_content = "", css = nil)
     returned = """
 <!DOCTYPE html>
 <html>
@@ -26,7 +26,7 @@ class Leafleter
 	<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
 	<link rel=\"stylesheet\" href=\"http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css\" />
 """
-    if css != nil
+    unless css.nil?
       returned += '<link rel="stylesheet" type="text/css" href="' + css + '" />'
     end
     returned += """<style>
@@ -44,10 +44,10 @@ class Leafleter
             float: left;
         }"""
     if width_percent != 100
-      returned+= """
+      returned += """
   #pane {
       height: 100%;
-      width: #{100-width_percent}%;
+      width: #{100 - width_percent}%;
       float: right;
   }"""
         end
@@ -66,7 +66,7 @@ class Leafleter
     return returned
   end
 
-  def self.get_after()
+  def self.get_after
     return """
 </script>
 </body>
@@ -83,7 +83,7 @@ class Leafleter
     return "L.marker(" + location + ").addTo(map).bindPopup(\"" + text + ".\");\n"
   end
 
-  def self.get_circle_marker(text, lat, lon, radius=10, options={})
+  def self.get_circle_marker(text, lat, lon, radius = 10, options = {})
     location = get_location(lat, lon)
     option_string = ""
     if options != {}
@@ -96,14 +96,14 @@ class Leafleter
     return "L.circleMarker(" + location + option_string + ").setRadius(#{radius}).addTo(map).bindPopup(\"" + text + ".\");\n"
   end
 
-  def self.get_line(lat1, lon1, lat2, lon2, color='red', weight=3, opacity=0.7)
+  def self.get_line(lat1, lon1, lat2, lon2, color = 'red', weight = 3, opacity = 0.7)
     location1 = get_location(lat1, lon1)
     location2 = get_location(lat2, lon2)
     return "L.polyline([" + location1 + ", " + location2 + "]," + """
     {
-              color: '""" + "#{color}" + """',
-              weight: """ + "#{weight}" +""",
-              opacity: """ + "#{opacity}" +""",
+              color: '""" + color.to_s + """',
+              weight: """ + weight.to_s + """,
+              opacity: """ + opacity.to_s + """,
               lineJoin: 'round'
           }
           ).addTo(map);"""
