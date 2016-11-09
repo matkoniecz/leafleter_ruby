@@ -24,7 +24,7 @@ class Leafleter
 	<title>""" + title + """</title>
 	<meta charset=\"utf-8\" />
 	<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
-	<link rel=\"stylesheet\" href=\"http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css\" />
+	<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css\" />
 """
     unless css.nil?
       returned += '<link rel="stylesheet" type="text/css" href="' + css + '" />'
@@ -57,7 +57,7 @@ class Leafleter
       <body>
       	<div id=\"map\"></div><div id=\"pane\">#{sidebar_content}</div>
 
-      	<script src=\"http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js\"></script>
+      	<script src=\"https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js\"></script>
       	<script>
       		var map = L.map('map').setView([""" + "#{lat_centered}, #{lon_centered}], #{zlevel_centered}" + """);
       		mapLink = '<a href=\"http://openstreetmap.org\">OpenStreetMap</a>';
