@@ -16,6 +16,18 @@ class Leafleter
 })"
   end
 
+  def self.leaflet_version
+    return "0.7.3"
+  end
+
+  def self.leaflet_css_file
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/#{leaflet_version}/leaflet.css"
+  end
+
+  def self.leaflet_js_file
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/#{leaflet_version}/leaflet.js"
+  end
+
   def self.get_before(title, lat_centered, lon_centered, zlevel_centered, tile_layer = get_standard_OSM_tile_Layer, width_percent = 100, sidebar_content = "", css = nil)
     returned = """
 <!DOCTYPE html>
@@ -24,7 +36,7 @@ class Leafleter
 	<title>""" + title + """</title>
 	<meta charset=\"utf-8\" />
 	<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
-	<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css\" />
+	<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/leaflet/#{leaflet_version}/leaflet.css\" />
 """
     unless css.nil?
       returned += '<link rel="stylesheet" type="text/css" href="' + css + '" />'
@@ -57,7 +69,7 @@ class Leafleter
       <body>
       	<div id=\"map\"></div><div id=\"pane\">#{sidebar_content}</div>
 
-      	<script src=\"https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js\"></script>
+      	<script src=\"https://cdnjs.cloudflare.com/ajax/libs/leaflet/#{leaflet_version}/leaflet.js\"></script>
       	<script>
       		var map = L.map('map').setView([""" + "#{lat_centered}, #{lon_centered}], #{zlevel_centered}" + """);
       		mapLink = '<a href=\"http://openstreetmap.org\">OpenStreetMap</a>';
