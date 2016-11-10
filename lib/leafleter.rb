@@ -17,6 +17,7 @@ class Leafleter
   end
 
   def self.leaflet_version
+    # leaflet files provided by https://cdnjs.com/libraries/leaflet/, see also leaflet_css_file, leaflet_js_file functions
     return "0.7.7"
   end
 
@@ -36,7 +37,7 @@ class Leafleter
 	<title>""" + title + """</title>
 	<meta charset=\"utf-8\" />
 	<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
-	<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/leaflet/#{leaflet_version}/leaflet.css\" />
+	<link rel=\"stylesheet\" href=\"#{leaflet_css_file}\" />
 """
     unless css.nil?
       returned += '<link rel="stylesheet" type="text/css" href="' + css + '" />'
@@ -69,7 +70,7 @@ class Leafleter
       <body>
       	<div id=\"map\"></div><div id=\"pane\">#{sidebar_content}</div>
 
-      	<script src=\"https://cdnjs.cloudflare.com/ajax/libs/leaflet/#{leaflet_version}/leaflet.js\"></script>
+      	<script src=\"#{leaflet_js_file}\"></script>
       	<script>
       		var map = L.map('map').setView([""" + "#{lat_centered}, #{lon_centered}], #{zlevel_centered}" + """);
       		mapLink = '<a href=\"http://openstreetmap.org\">OpenStreetMap</a>';
