@@ -11,9 +11,10 @@ class Leafleter
 
   def self.get_standard_OSM_tile_Layer
     return "L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '&copy; <a href=\"http://www.openstreetmap.org/copyright\">OpenStreetMap</a>'
-})"
+        attribution: '&copy; <a href=\"http://www.openstreetmap.org/copyright\">OpenStreetMap</a>',
+        subdomains: 'abc',
+        maxZoom: 19
+    })"
   end
 
   def self.leaflet_version
