@@ -17,7 +17,7 @@ class Leafleter
   end
 
   def self.leaflet_version
-    return "0.7.3"
+    return "0.7.7"
   end
 
   def self.leaflet_css_file
