@@ -18,8 +18,7 @@ end
 
 =begin
 how to release new gem version:
-
-gem build leafleter.gemspec
-gem install leafleter-*.*.*.gem
-gem push leafleter-*.*.*.gem
+gem build *.gemspec
+gem install *.gem
+gem push *.gem
 =end
