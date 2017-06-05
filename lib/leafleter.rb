@@ -5,7 +5,7 @@ class Leafleter
     'data: &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   end
 
-  def self.get_positron_tile_Layer()
+  def self.get_positron_tile_Layer
     return "L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
         attribution: '#{openstreetmap_copyright_notice}, basemap: &copy; <a href=\"http://cartodb.com/attributions\">CartoDB</a>',
         subdomains: 'abcd',
@@ -13,7 +13,7 @@ class Leafleter
     })"
   end
 
-  def self.get_standard_OSM_tile_Layer()
+  def self.get_standard_OSM_tile_Layer
     return "L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '#{openstreetmap_copyright_notice}, basemap made by <a href=\"https://github.com/gravitystorm/openstreetmap-carto/\">openstreetmap-carto project</a>',
         subdomains: 'abc',
