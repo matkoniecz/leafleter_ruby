@@ -23,7 +23,7 @@ class Leafleter
 
   def self.leaflet_version
     # leaflet files provided by https://cdnjs.com/libraries/leaflet/, see also leaflet_css_file, leaflet_js_file functions
-    return "1.0.1"
+    return "1.2.0"
   end
 
   def self.leaflet_css_file
