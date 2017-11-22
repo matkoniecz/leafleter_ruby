@@ -34,7 +34,7 @@ class Leafleter
     "https://cdnjs.cloudflare.com/ajax/libs/leaflet/#{leaflet_version}/leaflet.js"
   end
 
-  def self.get_before(title, lat_centered, lon_centered, zlevel_centered, tile_layer = get_standard_OSM_tile_Layer, width_percent = 100, sidebar_content = "", css = nil)
+  def self.get_html_page_prefix(title, lat_centered, lon_centered, zlevel_centered, tile_layer = get_standard_OSM_tile_Layer, width_percent = 100, sidebar_content = "", css = nil)
     returned = """
 <!DOCTYPE html>
 <html>
@@ -84,7 +84,7 @@ class Leafleter
     return returned
   end
 
-  def self.get_after
+  def self.get_html_page_suffix
     return """
 </script>
 </body>
