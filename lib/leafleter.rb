@@ -39,10 +39,10 @@ class Leafleter
 <!DOCTYPE html>
 <html>
 <head>
-	<title>""" + title + """</title>
-	<meta charset=\"utf-8\" />
-	<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
-	<link rel=\"stylesheet\" href=\"#{leaflet_css_file}\" />
+  <title>""" + title + """</title>
+  <meta charset=\"utf-8\" />
+  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+  <link rel=\"stylesheet\" href=\"#{leaflet_css_file}\" />
 """
     unless css.nil?
       returned += '<link rel="stylesheet" type="text/css" href="' + css + '" />'
@@ -73,14 +73,14 @@ class Leafleter
       """    </style>
       </head>
       <body>
-      	<div id=\"map\"></div><div id=\"pane\">#{sidebar_content}</div>
+        <div id=\"map\"></div><div id=\"pane\">#{sidebar_content}</div>
 
-      	<script src=\"#{leaflet_js_file}\"></script>
-      	<script>
-      		var map = L.map('map').setView([""" + "#{lat_centered}, #{lon_centered}], #{zlevel_centered}" + """);
-      		mapLink = '<a href=\"http://openstreetmap.org\">OpenStreetMap</a>';
-      		#{tile_layer}.addTo(map);
-      """
+        <script src=\"#{leaflet_js_file}\"></script>
+        <script>
+          var map = L.map('map').setView([""" + "#{lat_centered}, #{lon_centered}], #{zlevel_centered}" + """);
+          mapLink = '<a href=\"http://openstreetmap.org\">OpenStreetMap</a>';
+          #{tile_layer}.addTo(map);
+"""
     return returned
   end
 
