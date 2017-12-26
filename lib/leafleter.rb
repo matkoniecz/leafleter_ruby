@@ -115,15 +115,20 @@ class Leafleter
   end
 
   def self.get_line(lat1, lon1, lat2, lon2, color = 'red', weight = 3, opacity = 0.7)
-    location1 = get_location(lat1, lon1)
-    location2 = get_location(lat2, lon2)
-    return "L.polyline([" + location1 + ", " + location2 + "]," + """
-    {
-              color: '""" + color.to_s + """',
-              weight: """ + weight.to_s + """,
-              opacity: """ + opacity.to_s + """,
-              lineJoin: 'round'
-          }
-          ).addTo(map);"""
+    dummy_color = "black"
+    return get_polyline([[lat1, lon1], [lat2, lon2]], color, dummy_color, weight, opacity)
+  end
+
+  def self.get_polygon(positions, color = 'red', fill_color = 'red', weight = 3, opacity = 0.7)
+    return get_polyline(positions, color, weight, opacity)
+  end
+
+  def self.get_polyline(positions, color = 'red', fill_color = 'red', weight = 3, opacity = 0.7)
+    locations_string = ""
+    positions.each do |position|
+      locations_string += ", " if locations_string != ""
+      locations_string += get_location(position[0], position[1])
+    end
+    return "    L.polyline([" + locations_string + "]," + " {color: '" + color.to_s + "', fill: '" + fill_color.to_s + "', weight: " + weight.to_s + ", opacity: " + opacity.to_s + ", lineJoin: 'round'}).addTo(map);"""
   end
 end
