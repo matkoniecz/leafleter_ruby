@@ -18,7 +18,9 @@ end
 
 =begin
 how to release new gem version:
+
+rm *.gem
 gem build *.gemspec
-gem install *.gem
+gem install --user-install *.gem
 gem push *.gem
 =end
