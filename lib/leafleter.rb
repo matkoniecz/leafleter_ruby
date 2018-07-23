@@ -21,19 +21,6 @@ class Leafleter
     })"
   end
 
-  def self.leaflet_version
-    # leaflet files provided by https://cdnjs.com/libraries/leaflet/, see also leaflet_css_file, leaflet_js_file functions
-    return "1.2.0"
-  end
-
-  def self.leaflet_css_file
-    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/#{leaflet_version}/leaflet.css"
-  end
-
-  def self.leaflet_js_file
-    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/#{leaflet_version}/leaflet.js"
-  end
-
   def self.get_html_page_prefix(title, lat_centered, lon_centered, zlevel_centered=13, tile_layer = get_standard_OSM_tile_Layer, width_percent = 100, sidebar_content = "", css = nil)
     returned = """
 <!DOCTYPE html>
@@ -42,7 +29,13 @@ class Leafleter
   <title>""" + title + """</title>
   <meta charset=\"utf-8\" />
   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
-  <link rel=\"stylesheet\" href=\"#{leaflet_css_file}\" />
+
+  <link rel=\"stylesheet\" href=\"https://unpkg.com/leaflet@1.3.3/dist/leaflet.css\"
+   integrity=\"sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==\"
+   crossorigin=""/>
+  <script src=\"https://unpkg.com/leaflet@1.3.3/dist/leaflet.js\"
+   integrity=\"sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q==\"
+   crossorigin=""></script>
 """
     unless css.nil?
       returned += '<link rel="stylesheet" type="text/css" href="' + css + '" />'
@@ -75,7 +68,6 @@ class Leafleter
       <body>
         <div id=\"map\"></div><div id=\"pane\">#{sidebar_content}</div>
 
-        <script src=\"#{leaflet_js_file}\"></script>
         <script>
           var map = L.map('map').setView([""" + "#{lat_centered}, #{lon_centered}], #{zlevel_centered}" + """);
           mapLink = '<a href=\"http://openstreetmap.org\">OpenStreetMap</a>';
