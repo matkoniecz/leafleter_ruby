@@ -1,31 +1,3 @@
-Style/AccessorMethodName:
-  Enabled: false
-
-Style/RedundantReturn:
-  Enabled: false
-
-Style/AsciiComments:
-  Enabled: false
-
-Style/BlockComments:
-  Enabled: false
-
-Style/StringLiterals:
-  Enabled: false
-
-Style/WordArray:
-  Enabled: false
-
-Style/TrailingCommaInLiteral:
-  Enabled: false
-
-#it is likely to detect bugs, there is no point in masking them
-Lint/UnusedMethodArgument:
-  AutoCorrect: False
-
-#see https://github.com/bbatsov/rubocop/issues/1747
-Style/SpecialGlobalVars:
-  Enabled: false
-
-#AllCops:
-#  TargetRubyVersion: 2.3
+inherit_gem:
+  matkoniecz-ruby-style:
+    - standard_rubocop_config.yml

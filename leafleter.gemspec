@@ -14,6 +14,8 @@ Gem::Specification.new do |s|
   # If you need to check in files that aren't .rb files, add them here
   s.files        = Dir['{lib}/**/*.rb', 'bin/*', '*.txt', '*.md']
   s.require_path = 'lib'
+
+  s.add_development_dependency 'matkoniecz-ruby-style'
 end
 
 =begin
