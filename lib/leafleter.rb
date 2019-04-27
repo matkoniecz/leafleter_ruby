@@ -101,7 +101,7 @@ class Leafleter
     return "L.marker(" + location + ").addTo(map).bindPopup(\"" + text + ".\");\n"
   end
 
-  def self.get_circle_marker(text, lat, lon, radius = 10, options = {})
+  def self.get_circle_marker(text, lat, lon, radius_in_px = 10, options = {})
     location = get_location(lat, lon)
     option_string = ""
     if options != {}
@@ -111,7 +111,8 @@ class Leafleter
       end
       option_string += "\n}"
     end
-    return "L.circleMarker(" + location + option_string + ").setRadius(#{radius}).addTo(map).bindPopup(\"" + text + ".\");\n"
+    # docs at https://leafletjs.com/reference-1.4.0.html#circlemarker
+    return "L.circleMarker(" + location + option_string + ").setRadius(#{radius_in_px}).addTo(map).bindPopup(\"" + text + ".\");\n"
   end
 
   def self.get_line(lat1, lon1, lat2, lon2, color = 'red', weight = 3, opacity = 0.7)
