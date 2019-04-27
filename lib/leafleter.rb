@@ -70,8 +70,10 @@ class Leafleter
       float: right;
   }"
         end
+    # workaround for https://github.com/Leaflet/Leaflet/issues/4686
+    returned += "\n .leaflet-fade-anim .leaflet-tile,.leaflet-zoom-anim .leaflet-zoom-animated { will-change:auto !important; }"
     returned +=
-      "    </style>
+      "\n    </style>
       </head>
       <body>
         <div id=\"map\"></div><div id=\"pane\">#{sidebar_content}</div>
