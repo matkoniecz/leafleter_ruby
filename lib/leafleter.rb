@@ -21,7 +21,7 @@ class Leafleter
     })"
   end
 
-  def self.get_html_page_prefix(title, lat_centered, lon_centered, zlevel_centered=13, tile_layer = get_standard_OSM_tile_Layer, width_percent = 100, sidebar_content = "", css = nil)
+  def self.get_html_page_prefix(title, lat_centered, lon_centered, zlevel_centered = 13, tile_layer = get_standard_OSM_tile_Layer, width_percent = 100, sidebar_content = "", css = nil)
     returned = """
 <!DOCTYPE html>
 <html>
@@ -98,7 +98,7 @@ class Leafleter
     option_string = ""
     if options != {}
       option_string = ", {"
-      for pair in options
+      options.each do |pair|
         option_string += "\t#{pair[0]}: #{pair[1]},"
       end
       option_string += "\n}"
@@ -121,6 +121,7 @@ class Leafleter
       locations_string += ", " if locations_string != ""
       locations_string += get_location(position[0], position[1])
     end
-    return "    L.polyline([" + locations_string + "]," + " {color: '" + color.to_s + "', fill: '" + fill_color.to_s + "', weight: " + weight.to_s + ", opacity: " + opacity.to_s + ", lineJoin: 'round'}).addTo(map);"""
+    styling = " {color: '" + color.to_s + "', fill: '" + fill_color.to_s + "', weight: " + weight.to_s + ", opacity: " + opacity.to_s + ", lineJoin: 'round'}"
+      return "    L.polyline([" + locations_string + "]," + styling + ").addTo(map);"
   end
 end
