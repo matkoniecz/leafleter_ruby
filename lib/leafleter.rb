@@ -22,33 +22,33 @@ class Leafleter
   end
 
   def self.get_standard_prefix_of_any_html_page(title)
-    return """<!DOCTYPE html>
+    return "<!DOCTYPE html>
     <html>
     <head>
-      <title>""" + title + """</title>
+      <title>" + title + "</title>
       <meta charset=\"utf-8\" />
-      <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">"""
+      <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">"
   end
 
   def self.get_leaflet_dependencies
     # see https://leafletjs.com/download.html for updates
-    """<link rel=\"stylesheet\" href=\"https://unpkg.com/leaflet@1.3.3/dist/leaflet.css\"
+    "<link rel=\"stylesheet\" href=\"https://unpkg.com/leaflet@1.3.3/dist/leaflet.css\"
     integrity=\"sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==\"
     crossorigin=\"\"/>
    <script src=\"https://unpkg.com/leaflet@1.3.3/dist/leaflet.js\"
     integrity=\"sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q==\"
-    crossorigin=\"\"></script>"""
+    crossorigin=\"\"></script>"
   end
 
   def self.get_html_page_prefix(title, lat_centered, lon_centered, zlevel_centered = 13, tile_layer = get_standard_OSM_tile_Layer, width_percent = 100, sidebar_content = "", css = nil)
-    returned = """
+    returned = "
     #{get_standard_prefix_of_any_html_page(title)}
     #{get_leaflet_dependencies}
-"""
+"
     unless css.nil?
       returned += '<link rel="stylesheet" type="text/css" href="' + css + '" />'
     end
-    returned += """<style>
+    returned += "<style>
         body {
             padding: 0;
             margin: 0;
@@ -61,35 +61,35 @@ class Leafleter
             height: 100%;
             width: #{width_percent}%;
             float: left;
-        }"""
+        }"
     if width_percent != 100
-      returned += """
+      returned += "
   #pane {
       height: 100%;
       width: #{100 - width_percent}%;
       float: right;
-  }"""
+  }"
         end
     returned +=
-      """    </style>
+      "    </style>
       </head>
       <body>
         <div id=\"map\"></div><div id=\"pane\">#{sidebar_content}</div>
 
         <script>
-          var map = L.map('map').setView([""" + "#{lat_centered}, #{lon_centered}], #{zlevel_centered}" + """);
+          var map = L.map('map').setView([" + "#{lat_centered}, #{lon_centered}], #{zlevel_centered}" + ");
           mapLink = '<a href=\"http://openstreetmap.org\">OpenStreetMap</a>';
           #{tile_layer}.addTo(map);
-"""
+"
     return returned
   end
 
   def self.get_html_page_suffix
-    return """
+    return "
 </script>
 </body>
 </html>
-"""
+"
   end
 
   def self.get_location(lat, lon)
