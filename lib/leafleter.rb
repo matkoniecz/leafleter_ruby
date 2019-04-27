@@ -32,12 +32,12 @@ class Leafleter
 
   def self.get_leaflet_dependencies
     # see https://leafletjs.com/download.html for updates
-    "<link rel=\"stylesheet\" href=\"https://unpkg.com/leaflet@1.3.3/dist/leaflet.css\"
-    integrity=\"sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==\"
-    crossorigin=\"\"/>
-   <script src=\"https://unpkg.com/leaflet@1.3.3/dist/leaflet.js\"
-    integrity=\"sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q==\"
-    crossorigin=\"\"></script>"
+    '<link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+  integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+  crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+  integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+  crossorigin=""></script>'
   end
 
   def self.get_html_page_prefix(title, lat_centered, lon_centered, zlevel_centered = 13, tile_layer = get_standard_OSM_tile_Layer, width_percent = 100, sidebar_content = "", css = nil)
