@@ -121,7 +121,7 @@ class Leafleter
   end
 
   def self.get_polygon(positions, color = 'red', fill_color = 'red', weight = 3, opacity = 0.7)
-    return get_polyline(positions, color, weight, opacity)
+    return get_polyline(positions, color, fill_color, weight, opacity)
   end
 
   def self.get_polyline(positions, color = 'red', fill_color = 'red', weight = 3, opacity = 0.7)
