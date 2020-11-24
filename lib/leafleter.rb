@@ -5,9 +5,21 @@ class Leafleter
     return 'data: &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   end
 
-  def self.get_positron_tile_Layer
+  def self.get_grayscale_tile_layer
+    return self.get_positron_tile_layer
+  end
+
+  def self.get_positron_tile_layer
     return "L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
         attribution: '#{openstreetmap_copyright_notice}, basemap: &copy; <a href=\"http://cartodb.com/attributions\">CartoDB</a>',
+        subdomains: 'abcd',
+        maxZoom: 19
+    })"
+ end
+
+  def self.get_gray_transformed_osm_carto_tile_layer
+      return "L.tileLayer('https://tiles.wmflabs.org/bw-mapnik/${z}/${x}/${y}.png', {
+        attribution: '#{openstreetmap_copyright_notice}',
         subdomains: 'abcd',
         maxZoom: 19
     })"
