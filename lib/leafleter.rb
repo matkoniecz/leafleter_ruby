@@ -2,7 +2,7 @@ class Leafleter
   # consider importing more from http://leaflet-extras.github.io/leaflet-providers/preview/
   # or using this extension
   def self.openstreetmap_copyright_notice
-    'data: &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    return 'data: &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   end
 
   def self.get_positron_tile_Layer
