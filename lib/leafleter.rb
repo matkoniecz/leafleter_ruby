@@ -52,7 +52,46 @@ class Leafleter
   crossorigin=""></script>'
   end
 
-  def self.get_html_page_prefix(title, lat_centered, lon_centered, zlevel_centered = 13, tile_layer = get_standard_OSM_tile_layer, width_percent = 100, sidebar_content = "", css = nil)
+  def self.map_area_part_of_styling(width_percent)
+    return "        body {
+      padding: 0;
+      margin: 0;
+  }
+  html, body {
+      height: 100%;
+      width: 100%;
+  }
+  #map {
+      height: 100%;
+      width: #{width_percent}%;
+      float: left;
+  }"
+    if width_percent != 100
+      returned += "
+#pane {
+height: 100%;
+width: #{100 - width_percent}%;
+float: right;
+}"
+    end
+  end
+
+  def self.internal_leaflet_styling_part()
+    # workaround for https://github.com/Leaflet/Leaflet/issues/4686
+    return "\n .leaflet-fade-anim .leaflet-tile,.leaflet-zoom-anim .leaflet-zoom-animated { will-change:auto !important; }"
+  end
+
+  def self.get_html_page_prefix(title, lat_centered, lon_centered, zlevel_centered: 13, tile_layer: get_standard_OSM_tile_layer, width_percent: 100, sidebar_content: "", css: nil)
+    # asserts for parameters, I wasted over 1 hour on bug that would be caught by this
+    zlevel_centered.to_f
+    lat_centered.to_f
+    lon_centered.to_f
+    width_percent.to_f
+    raise if width_percent > 100
+    raise if width_percent < 100
+    raise if zlevel_centered <= 0
+    ######
+
     returned = "
     #{get_standard_prefix_of_any_html_page(title)}
     #{get_leaflet_dependencies}
@@ -60,30 +99,9 @@ class Leafleter
     unless css.nil?
       returned += '<link rel="stylesheet" type="text/css" href="' + css + '" />'
     end
-    returned += "<style>
-        body {
-            padding: 0;
-            margin: 0;
-        }
-        html, body {
-            height: 100%;
-            width: 100%;
-        }
-        #map {
-            height: 100%;
-            width: #{width_percent}%;
-            float: left;
-        }"
-    if width_percent != 100
-      returned += "
-  #pane {
-      height: 100%;
-      width: #{100 - width_percent}%;
-      float: right;
-  }"
-        end
-    # workaround for https://github.com/Leaflet/Leaflet/issues/4686
-    returned += "\n .leaflet-fade-anim .leaflet-tile,.leaflet-zoom-anim .leaflet-zoom-animated { will-change:auto !important; }"
+    returned += "<style>"
+    returned += self.map_area_part_of_styling(width_percent)
+    returned += self.internal_leaflet_styling_part()
     returned +=
       "\n    </style>
       </head>
