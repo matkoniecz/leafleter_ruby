@@ -13,7 +13,7 @@ class Leafleter
     })"
   end
 
-  def self.get_standard_OSM_tile_Layer
+  def self.get_standard_OSM_tile_layer
     return "L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '#{openstreetmap_copyright_notice}, basemap made by <a href=\"https://github.com/gravitystorm/openstreetmap-carto/\">openstreetmap-carto project</a>',
         subdomains: 'abc',
@@ -40,7 +40,7 @@ class Leafleter
   crossorigin=""></script>'
   end
 
-  def self.get_html_page_prefix(title, lat_centered, lon_centered, zlevel_centered = 13, tile_layer = get_standard_OSM_tile_Layer, width_percent = 100, sidebar_content = "", css = nil)
+  def self.get_html_page_prefix(title, lat_centered, lon_centered, zlevel_centered = 13, tile_layer = get_standard_OSM_tile_layer, width_percent = 100, sidebar_content = "", css = nil)
     returned = "
     #{get_standard_prefix_of_any_html_page(title)}
     #{get_leaflet_dependencies}
