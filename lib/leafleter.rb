@@ -26,9 +26,8 @@ class Leafleter
   end
 
   def self.get_standard_OSM_tile_layer
-    return "L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    return "L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '#{openstreetmap_copyright_notice}, basemap made by <a href=\"https://github.com/gravitystorm/openstreetmap-carto/\">openstreetmap-carto project</a>',
-        subdomains: 'abc',
         maxZoom: 19
     })"
   end
