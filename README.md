@@ -1,1 +1,1 @@
-See example.rb file.
+See [example.rb](example.rb) file.
