@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ['Mateusz Konieczny']
   s.email       = ['matkoniecz@gmail.com']
-  s.homepage    = 'https://github.com/matkoniecz/leafleter'
+  s.homepage    = 'https://github.com/matkoniecz/leafleter_ruby'
   s.summary     = 'Generator of Leaflet maps.'
   s.description = 'Generator of Leaflet maps.'
   s.license     = 'CC0'
