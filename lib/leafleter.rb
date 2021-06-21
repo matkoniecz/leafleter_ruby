@@ -162,6 +162,6 @@ float: right;
       locations_string += get_location(position[0], position[1])
     end
     styling = " {color: '" + color.to_s + "', fill: '" + fill_color.to_s + "', weight: " + weight.to_s + ", opacity: " + opacity.to_s + ", lineJoin: 'round'}"
-    return "    L.polyline([" + locations_string + "]," + styling + ").addTo(map);"
+    return "L.polyline([" + locations_string + "]," + styling + ").addTo(map);\n"
   end
 end
