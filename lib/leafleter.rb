@@ -87,7 +87,7 @@ float: right;
     lon_centered.to_f
     width_percent.to_f
     raise if width_percent > 100
-    raise if width_percent < 100
+    raise if width_percent <= 0
     raise if zlevel_centered <= 0
     ######
 
