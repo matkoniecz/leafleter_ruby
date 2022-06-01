@@ -80,6 +80,12 @@ float: right;
     return "\n .leaflet-fade-anim .leaflet-tile,.leaflet-zoom-anim .leaflet-zoom-animated { will-change:auto !important; }"
   end
 
+  def self.recoloured_markers_styling()
+    return ""\
+      "img.huechange_pinkish_marker { filter: hue-rotate(120deg); }"\
+      "img.huechange_green_marker { filter: hue-rotate(240deg); }"\
+  end
+
   def self.get_html_page_prefix(title, lat_centered, lon_centered, zlevel_centered: 13, tile_layer: get_standard_OSM_tile_layer, width_percent: 100, sidebar_content: "", css: nil)
     # asserts for parameters, I wasted over 1 hour on bug that would be caught by this
     zlevel_centered.to_f
@@ -98,9 +104,10 @@ float: right;
     unless css.nil?
       returned += '<link rel="stylesheet" type="text/css" href="' + css + '" />'
     end
-    returned += "<style>"
+    returned += "<style>\n"
     returned += self.map_area_part_of_styling(width_percent)
     returned += self.internal_leaflet_styling_part()
+    returned += self.recoloured_markers_styling()
     returned +=
       "\n    </style>
       </head>
@@ -128,6 +135,7 @@ float: right;
   end
 
   def self.get_marker(text, lat, lon)
+    # TODO: implement what is implemented for Python variant
     location = get_location(lat, lon)
     return "L.marker(" + location + ").addTo(map).bindPopup(\"" + text + ".\");\n"
   end
